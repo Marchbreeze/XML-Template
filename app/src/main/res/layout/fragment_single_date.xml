@@ -5,6 +5,11 @@
 
     <data>
 
+        <import type="android.view.View" />
+
+        <variable
+            name="vm"
+            type="com.march.xml.template.date.SingleDateViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,12 +24,13 @@
             android:paddingHorizontal="12dp"
             android:textAlignment="center"
             android:textColor="@color/white"
+            android:text="@{vm.dateText}"
             android:textSize="40sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="2025년 12월 31일 수요일"/>
+            tools:text="2025년 12월 31일 수요일" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

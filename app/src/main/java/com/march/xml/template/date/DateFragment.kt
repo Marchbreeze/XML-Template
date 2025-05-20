@@ -7,11 +7,15 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
 import com.march.xml.template.R
 import com.march.xml.template.databinding.FragmentDateBinding
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import java.time.format.DateTimeFormatter
 import java.util.Locale
 
@@ -73,11 +77,11 @@ class DateFragment : Fragment() {
     }
 
     private fun observeCurrentIndex() {
-        viewModel.currentIndex.observe(viewLifecycleOwner) { index ->
+        viewModel.currentIndex.flowWithLifecycle(lifecycle).onEach { index ->
             if (binding.vpDate.currentItem != index) {
                 binding.vpDate.setCurrentItem(index, true)
             }
-        }
+        }.launchIn(lifecycleScope)
     }
 
     override fun onDestroyView() {
