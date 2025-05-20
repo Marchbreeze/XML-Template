@@ -1,14 +1,19 @@
 package com.march.xml.template.home
 
-import androidx.fragment.app.viewModels
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.march.xml.template.R
 
 class HomeFragment : Fragment() {
+    private var _binding: ViewDataBinding? = null
+    private val binding: ViewDataBinding
+        get() = requireNotNull(_binding) { "binding object is not initialized" }
 
     companion object {
         fun newInstance() = HomeFragment()
@@ -25,6 +30,13 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
+        binding.lifecycleOwner = viewLifecycleOwner
+        return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
