@@ -46,7 +46,6 @@ class HomeFragment : Fragment() {
     private fun initAdapter() {
         _adapter = HomeAdapter(
             addBtnClick = ::initAddBtnClickListener,
-            itemClick = ::initItemClickListener,
             deleteBtnClick = ::initDeleteBtnClickListener
         )
         binding.rvMemo.adapter = adapter
@@ -56,12 +55,8 @@ class HomeFragment : Fragment() {
 
     }
 
-    private fun initItemClickListener(position: Int) {
-
-    }
-
     private fun initDeleteBtnClickListener(position: Int) {
-
+        adapter.removeItem(position)
     }
 
     private fun observeNewMemoList() {

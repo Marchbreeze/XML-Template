@@ -10,7 +10,6 @@ import com.march.xml.template.util.ItemDiffCallback
 
 class HomeAdapter(
     private val addBtnClick: () -> (Unit),
-    private val itemClick: (Int) -> (Unit),
     private val deleteBtnClick: (Int) -> (Unit)
 ) : ListAdapter<String, RecyclerView.ViewHolder>(diffUtil) {
 
@@ -26,7 +25,6 @@ class HomeAdapter(
 
             VIEW_TYPE_CONTENT -> HomeContentViewHolder(
                 ItemContentBinding.inflate(inflater, parent, false),
-                itemClick,
                 deleteBtnClick
             )
 
