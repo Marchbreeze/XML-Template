@@ -1,6 +1,7 @@
 package com.march.xml.template.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,6 +24,7 @@ class HomeFragment : Fragment() {
     private val adapter
         get() = requireNotNull(_adapter) { "adapter object is not initialized" }
 
+    private var homeAddDialog: HomeAddDialog? = null
 
     private val viewModel: HomeViewModel by viewModels()
 
@@ -41,6 +43,7 @@ class HomeFragment : Fragment() {
 
         initAdapter()
         observeNewMemoList()
+        observeMemoInput()
     }
 
     private fun initAdapter() {
@@ -52,7 +55,8 @@ class HomeFragment : Fragment() {
     }
 
     private fun initAddBtnClickListener() {
-
+        homeAddDialog = HomeAddDialog()
+        homeAddDialog?.show(childFragmentManager, "HomeAddDialog")
     }
 
     private fun initDeleteBtnClickListener(position: Int) {
@@ -65,9 +69,17 @@ class HomeFragment : Fragment() {
         }.launchIn(lifecycleScope)
     }
 
+    private fun observeMemoInput() {
+        viewModel.memoInput.flowWithLifecycle(lifecycle).onEach {
+            Log.d("qqqq", it)
+            adapter.addItemList(listOf(it))
+        }.launchIn(lifecycleScope)
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
         _adapter = null
+        homeAddDialog = null
     }
 }
