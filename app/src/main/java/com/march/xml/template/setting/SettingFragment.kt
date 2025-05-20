@@ -5,14 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.march.xml.template.R
+import com.march.xml.template.databinding.FragmentSettingBinding
 
 class SettingFragment : Fragment() {
-    private var _binding: ViewDataBinding? = null
-    private val binding: ViewDataBinding
+    private var _binding: FragmentSettingBinding? = null
+    private val binding: FragmentSettingBinding
         get() = requireNotNull(_binding) { "binding object is not initialized" }
 
     companion object {
