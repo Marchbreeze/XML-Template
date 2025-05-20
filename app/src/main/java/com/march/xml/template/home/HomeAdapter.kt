@@ -60,11 +60,6 @@ class HomeAdapter(
         notifyDataSetChanged()
     }
 
-    fun setItemList(itemList: List<String>) {
-        this.itemList = itemList.toMutableList()
-        notifyDataSetChanged()
-    }
-
     fun removeItem(position: Int) {
         itemList.removeAt(position)
         notifyItemRemoved(position + HEADER_COUNT)
