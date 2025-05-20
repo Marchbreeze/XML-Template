@@ -11,7 +11,7 @@ import androidx.fragment.app.commit
 import androidx.fragment.app.replace
 import com.march.xml.template.databinding.ActivityMainBinding
 import com.march.xml.template.home.HomeFragment
-import com.march.xml.template.setting.SettingFragment
+import com.march.xml.template.date.DateFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
         binding.bnvMain.setOnItemSelectedListener { menu ->
             when (menu.itemId) {
                 R.id.menu_home -> navigateTo<HomeFragment>()
-                R.id.menu_setting -> navigateTo<SettingFragment>()
+                R.id.menu_date -> navigateTo<DateFragment>()
             }
             true
         }
